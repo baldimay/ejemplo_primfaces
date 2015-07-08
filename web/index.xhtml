@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="93" resizable="false" closable="flase" collapsible="flase">
+                    <h2 align="center" >Gestion de Veterenaria</h2>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="50" closable="true" collapsible="true">
+                    <div align="center">
+                        <small>Ejemplo de Primfaces - Curso Java Eterprice 2015</small>
+                    </div>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <p:menu style="width: 93%;">
+                        <p:submenu label="Mascotas">
+                            <p:menuitem value="Listar Mascotas" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                            <p:menuitem value="Nueva Mascota" url="http://www.primefaces.org/documentation.html" />
+                            
+                        </p:submenu>
+                        <p:submenu label="Dueños">
+                            <p:menuitem value="Listar Dueños" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                            <p:menuitem value="Nueva Dueños" url="http://www.primefaces.org/documentation.html" />
+                            
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <f:view>
+
+
+                        <h:form>
+                            <h1><h:outputText value="List"/></h1>
+                            <p:dataTable id="tabla" value="#{mascotasController.listMascotas}" var="item" rows="5" paginator="true" rowsPerPageTemplate="5, 10, 15, 20">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="IdMascota"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idMascota}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Nombre"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.nombre}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="FecNac"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.fecNac}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Especie"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.especie}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Raza"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.raza}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:commandButton id="editar" icon="ui-icon-document" label="Editar" action="#{mascotasController.doEditar(m)}" />
+                                    <p:tooltip id="ttEdit" for="editar" value="Editar"/>
+                                            
+                                    &nbsp;
+                                    <p:commandButton id="borrar" icon="ui-icon-trash"/>
+                                    <p:tooltip id="ttEdit" for="borrar" value="Borrar" showEffect="clip" hideEffect="explode"/>
+                               
+                                </p:column>
+                                
+                            </p:dataTable>
+                            <br/>
+                            <p:commandButton value="Nueva Mascota" icon="ui-icon-note" actionListener="#{mascotasController.doVerNuevo}" onclick="PF('dlgNuevo').show()"/>
+                        </h:form>
+                    </f:view>
+
+                </p:layoutUnit>
+                
+            </p:layout>
+            <p:dialog header="Nuevo Libro" showEffect="fade" hideEffect="slide" closeOnEscape="true" widgetVar="dlgNuevo" modal="false" >
+                          <ui:include src="nuevo.xhtml"/> 
+                 
+                </p:dialog>
+        </h:body>
+
+    </f:view>
+</html>
+

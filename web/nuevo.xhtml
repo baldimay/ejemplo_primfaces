@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="IdMascota:" for="idMascota" />
+                    <p:inputText id="idMascota" value="#{mascotasController.mascotas.idMascota}" title="IdMascota" required="true" requiredMessage="The IdMascota field is required."/>
+                    <p:outputLabel value="Nombre:" for="nombre" />
+                    <p:inputText id="nombre" value="#{mascotasController.mascotas.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
+                    <p:outputLabel value="FecNac:" for="fecNac" />
+                    <p:inputText id="fecNac" value="#{mascotasController.mascotas.fecNac}" title="FecNac" required="true" requiredMessage="The FecNac field is required.">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </p:inputText>
+                    <p:outputLabel value="Especie:" for="especie" />
+                    <p:inputText id="especie" value="#{mascotasController.mascotas.especie}" title="Especie" required="true" requiredMessage="The Especie field is required."/>
+                    <p:outputLabel value="Raza:" for="raza" />
+                    <p:inputText id="raza" value="#{mascotasController.mascotas.raza}" title="Raza" required="true" requiredMessage="The Raza field is required."/>
+                </p:panelGrid>
+                <p:commandButton icon="ui-icon-save" value="Guardar"/>
+                <p:commandButton icon="ui.icon-cancel" value="Cancelar" oncomplete="PF('dlgNuevo')"/>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+
